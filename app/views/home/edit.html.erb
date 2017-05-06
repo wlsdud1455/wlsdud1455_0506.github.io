@@ -1,0 +1,14 @@
+<h1>여기는 수정하는 페이지 입니다</h1>
+
+<!--<form action="/update/<%=@edit_post.id%>" method="post">-->
+<!--    제목: <input type="text" name="post_title" value="<%=@edit_post.title%>"></input><br><br>-->
+<!--    내용: <textarea name="post_content"><%=@edit_post.content%></textarea><br><br>-->
+<!--    <input type="submit" value="작성"></input>-->
+<!--</form>-->
+
+
+<%= form_tag( {controller: :home, action: :update, amugona: @edit_post.id} ) do %>
+     제목: <%= text_field_tag :post_title, @edit_post.title %><br><br>
+     내용: <%= text_field_tag :post_content, @edit_post.content %><br><br>
+      <%= submit_tag "작성" %><br>
+<% end %>

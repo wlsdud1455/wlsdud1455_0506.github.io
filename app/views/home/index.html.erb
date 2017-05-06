@@ -1,0 +1,29 @@
+<h1> 여기는 게시물 목록이 나오는 인덱스 페이지</h1>
+<%= link_to '새 글 쓰기', {controller: :home, action: :new} %><br>
+
+<%@posts.each do |banana|%>
+   제목: <%=banana.title%><br>
+   내용: <%=banana.content%><br>
+   
+   <!--<a href="/delete/<%=banana.id%>">삭제</a><br>-->
+   <%= link_to '삭제', {controller: :home, action: :delete, amugona: banana.id} %> 
+   <%= link_to '수정', {controller: :home, action: :edit, amugona: banana.id} %> 
+   <!--<a href="/edit/<%=banana.id%>">수정</a><br>-->
+
+   <%= form_tag( {controller: :comments, action: :create, amugona: banana.id} ) do %>
+      <%= text_field_tag :content%>
+      <%= submit_tag "댓글" %><br>
+   <% end %>
+   
+   <!--<form action="/home/<%=banana.id%>/comments/create" method="post">-->
+      <!--<textarea name="content"></textarea>-->
+      <!--<input type="submit" value="댓글쓰기"><br>-->
+   <!--</form>-->
+   
+   <% banana.comments.each do |apple|%>
+      <%=apple.content%>
+      <!--<a href="/home/<%=banana.id%>/comments/<%=apple.id%>">[댓글삭제]</a><br>-->
+      <%= link_to '[댓글삭제]', {controller: :comments, action: :destroy, amugona: banana.id, lalala: apple.id} %><br> 
+   <%end%>
+   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ<br>
+<%end%>
